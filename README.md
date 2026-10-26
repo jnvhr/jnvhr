@@ -37,6 +37,9 @@ I build tools that do real work. Mostly Python, some frontend. I like ideas that
 | `[>]` | [**OpenChatCut**](https://github.com/jnvhr/OpenChatCut) | Open-source, local-first conversational AI video editor with a multi-track timeline and Remotion rendering |
 | `[>]` | [**im-upping-my-pdoom**](https://github.com/jnvhr/im-upping-my-pdoom) | Python experiments |
 | `[>]` | [**Gravity-Falls-Cipher-Tool**](https://github.com/jnvhr/Gravity-Falls-Cipher-Tool) | Cipher decoder for the show's cryptograms |
+| `[>]` | [**Universal Video Downloader**](https://universal-video-downloader-1-ylon.onrender.com) | Live app. Source is private |
+| `[>]` | [**STRATA**](https://strata-img.pages.dev) | Live app. Source is private |
+| `[>]` | [**Moniker**](https://mnkr.pages.dev) | Live app. Source is private |
 
 &nbsp;
 
