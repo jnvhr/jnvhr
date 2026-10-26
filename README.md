@@ -16,50 +16,41 @@
 
 &nbsp;
 
-```text
-+--------------------------------------+
-|  // ABOUT                            |
-+--------------------------------------+
-```
+### 01 ·· ABOUT
 
-I build tools that do real work. Mostly Python, some frontend. I like ideas that end up as something you can run, not something that stays in a notes file.
+I build tools that do real work, mostly in Python with some frontend. I care more about ideas that end up running than ideas that stay in a notes file.
 
 &nbsp;
 
-```text
-+--------------------------------------+
-|  // PROJECTS                         |
-+--------------------------------------+
-```
+### 02 ·· PROJECTS
 
-| | Project | What it is |
-|---|---|---|
-| `[>]` | [**OpenChatCut**](https://github.com/jnvhr/OpenChatCut) | Open-source, local-first conversational AI video editor with a multi-track timeline and Remotion rendering |
-| `[>]` | [**im-upping-my-pdoom**](https://github.com/jnvhr/im-upping-my-pdoom) | Python experiments |
-| `[>]` | [**Gravity-Falls-Cipher-Tool**](https://github.com/jnvhr/Gravity-Falls-Cipher-Tool) | Cipher decoder for the show's cryptograms |
-| `[>]` | [**Universal Video Downloader**](https://universal-video-downloader-1-ylon.onrender.com) | Live app. Source is private |
-| `[>]` | [**STRATA**](https://strata-img.pages.dev) | Live app. Source is private |
-| `[>]` | [**Moniker**](https://mnkr.pages.dev) | Live app. Source is private |
+**Open source**
 
-&nbsp;
+| | Project | What it does |
+|:-:|---|---|
+| ▸ | [**OpenChatCut**](https://github.com/jnvhr/OpenChatCut) | Local-first, conversational AI video editor with a multi-track timeline and Remotion rendering |
+| ▸ | [**im-upping-my-pdoom**](https://github.com/jnvhr/im-upping-my-pdoom) | Python experiments |
+| ▸ | [**Gravity-Falls-Cipher-Tool**](https://github.com/jnvhr/Gravity-Falls-Cipher-Tool) | Decoder for the show's cryptograms |
 
-```text
-+--------------------------------------+
-|  // STACK                            |
-+--------------------------------------+
-```
+**Live (source private)**
 
-`Python` &nbsp; `Frontend` &nbsp; `Remotion`
+| | Project | Link |
+|:-:|---|---|
+| ▸ | **Universal Video Downloader** | [open ↗](https://universal-video-downloader-1-ylon.onrender.com) |
+| ▸ | **STRATA** | [open ↗](https://strata-img.pages.dev) |
+| ▸ | **Moniker** | [open ↗](https://mnkr.pages.dev) |
 
 &nbsp;
 
-```text
-+--------------------------------------+
-|  // CONTACT                          |
-+--------------------------------------+
-```
+### 03 ·· STACK
 
-Reach me on GitHub: [@jnvhr](https://github.com/jnvhr)
+`Python` · `Frontend` · `Remotion`
+
+&nbsp;
+
+### 04 ·· CONNECT
+
+GitHub: [@jnvhr](https://github.com/jnvhr)
 
 &nbsp;
 
