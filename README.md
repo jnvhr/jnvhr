@@ -2,62 +2,58 @@
 
 <img src="./assets/idea_to_execution.gif" alt="An ASCII spark becomes a beam that builds a rocket and launches it" width="100%">
 
-```text
-     _  _   _ __     __ _   _  ____  
-    | || \ | |\ \   / /| | | ||  _ \ 
- _  | ||  \| | \ \ / / | |_| || |_) |
-| |_| || |\  |  \ V /  |  _  ||  _ < 
- \___/ |_| \_|   \_/   |_| |_||_| \_\
-```
-
-`idea  . : ; = ====>  execution`
-
 </div>
 
-&nbsp;
+<table>
+<tr><td>
+<pre>jnvhr / README.md</pre>
+</td></tr>
+<tr><td valign="top">
 
-### 01 ·· ABOUT
+<pre>
+     \   |   /  
+   --  .*.  --  
+     /   |   \  
+         ^      
+        /|\     
+       / | \    
+  .  .|  O  |   
+      |  |  |   
+      |  |  |   
+     /|__|__|\  
+    /_|______|_\
+     ~~~~~~~~~~ 
+</pre>
 
-I build tools that do real work, mostly in Python with some frontend. I care more about ideas that end up running than ideas that stay in a notes file.
+</td><td valign="top">
 
-&nbsp;
+<pre>
+jnvhr@github
+--------------------------------------
+Focus ........ Python, frontend
+Building ..... tools that do real work
+Stack ........ Python, Remotion, frontend
+Projects ..... 6 (3 open, 3 live)
 
-### 02 ·· PROJECTS
+OPEN SOURCE
+OpenChatCut ............. <a href="https://github.com/jnvhr/OpenChatCut">repo</a>
+im-upping-my-pdoom ...... <a href="https://github.com/jnvhr/im-upping-my-pdoom">repo</a>
+Gravity-Falls-Cipher .... <a href="https://github.com/jnvhr/Gravity-Falls-Cipher-Tool">repo</a>
 
-**Open source**
+LIVE (source private)
+Universal Video Dl ...... <a href="https://universal-video-downloader-1-ylon.onrender.com">open</a>
+STRATA .................. <a href="https://strata-img.pages.dev">open</a>
+Moniker ................. <a href="https://mnkr.pages.dev">open</a>
 
-| | Project | What it does |
-|:-:|---|---|
-| ▸ | [**OpenChatCut**](https://github.com/jnvhr/OpenChatCut) | Local-first, conversational AI video editor with a multi-track timeline and Remotion rendering |
-| ▸ | [**im-upping-my-pdoom**](https://github.com/jnvhr/im-upping-my-pdoom) | Python experiments |
-| ▸ | [**Gravity-Falls-Cipher-Tool**](https://github.com/jnvhr/Gravity-Falls-Cipher-Tool) | Decoder for the show's cryptograms |
+CONTACT
+GitHub .................. <a href="https://github.com/jnvhr">@jnvhr</a>
+</pre>
 
-**Live (source private)**
-
-| | Project | Link |
-|:-:|---|---|
-| ▸ | **Universal Video Downloader** | [open ↗](https://universal-video-downloader-1-ylon.onrender.com) |
-| ▸ | **STRATA** | [open ↗](https://strata-img.pages.dev) |
-| ▸ | **Moniker** | [open ↗](https://mnkr.pages.dev) |
-
-&nbsp;
-
-### 03 ·· STACK
-
-`Python` · `Frontend` · `Remotion`
-
-&nbsp;
-
-### 04 ·· CONNECT
-
-GitHub: [@jnvhr](https://github.com/jnvhr)
-
-&nbsp;
+</td></tr>
+</table>
 
 <div align="center">
 
-```text
- *  . : ; = ==== ====>  [ ^ ]
-```
+<pre>idea  . : ; = ==== ====>  execution</pre>
 
 </div>
