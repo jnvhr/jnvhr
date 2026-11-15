@@ -1,8 +1,10 @@
 name: Profile graphics
 
-# Redraws the 3D contribution graph the profile README shows
-# (profile-3d-contrib/profile-dark.svg and profile-light.svg),
-# using yoshi389111/github-profile-3d-contrib.
+# Redraws the two images the profile README shows, both seen from the
+# camera angle set in tools/view.py:
+#   profile-3d-contrib/profile-*.svg  3D contribution graph, drawn by
+#                                     yoshi389111/github-profile-3d-contrib, then turned
+#   assets/name-*.svg                 the name banner
 
 on:
   schedule:
@@ -10,7 +12,7 @@ on:
   workflow_dispatch:
   push:
     branches: [master, readme-redesign]
-    paths: [".github/workflows/profile-graphics.yml", ".github/profile-3d-contrib.json"]
+    paths: [".github/workflows/profile-graphics.yml", ".github/profile-3d-contrib.json", "tools/**"]
 
 permissions:
   contents: write
@@ -33,11 +35,18 @@ jobs:
           # GitHub's own greens on a dark slab (and a light twin), instead of the stock themes
           SETTING_JSON: .github/profile-3d-contrib.json
 
+      # the generator only draws a 45 degree view; this turns it to ours
+      - name: Turn the graph to the shared camera angle
+        run: python3 tools/turn_graph.py profile-3d-contrib/*.svg
+
+      - name: Name banner
+        run: python3 tools/draw_name.py
+
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A profile-3d-contrib
+          git add -A profile-3d-contrib assets/name-dark.svg assets/name-light.svg
           if ! git diff --cached --quiet; then
             git commit -m "Update profile graphics"
             git pull --rebase

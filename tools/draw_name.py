@@ -3,12 +3,14 @@
 
     python3 tools/draw_name.py
 
-"JNVHR" stands in green blocks on a slab, in the same isometric projection
-and the same colours as the 3D contribution graph below it. Writes
-assets/name-dark.svg and assets/name-light.svg. No dependencies.
+"JNVHR" stands in green blocks on a slab, seen from the same angle and in
+the same colours as the 3D contribution graph below it (the angle lives in
+view.py). Writes assets/name-dark.svg and assets/name-light.svg.
+No dependencies.
 """
-import math
 from pathlib import Path
+
+from view import COS_PITCH, ground
 
 TEXT = "JNVHR"
 
@@ -21,8 +23,8 @@ FONT = {
     "R": ["####.", "#...#", "#...#", "####.", "#.#..", "#..#.", "#...#"],
 }
 
-EDGE = 22.0  # one block
-DX, DY = EDGE * math.cos(math.radians(30)), EDGE * 0.5
+EDGE = 22.0  # height of one block on the page
+SIZE = EDGE / COS_PITCH  # its true edge, before the camera foreshortens it
 LEVELS = 7  # blocks in a full-height stroke
 SIDE, BETWEEN = 1, 2  # empty columns at each end and between letters
 DEPTH, WALL = 3, 1  # slab rows, and the row the letters stand on
@@ -50,8 +52,9 @@ def n(v):
 
 
 def pt(u, v, z=0.0):
-    """Column u, row v, height z -> a point on the page."""
-    return ((u - v) * DX, (u + v) * DY - z)
+    """Column u, row v, height z (already in page units) -> a point on the page."""
+    x, y = ground(u, v, SIZE)
+    return (x, y - z)
 
 
 def poly(points):
@@ -71,9 +74,10 @@ def layout():
 def draw(theme):
     t = THEMES[theme]
     cols, blocks = layout()
-    w = (cols + DEPTH) * DX + 2 * PAD
-    h = (cols + DEPTH) * DY + LEVELS * EDGE + THICK + 2 * PAD
-    ox, oy = DEPTH * DX + PAD, LEVELS * EDGE + PAD
+    left, top = pt(0, DEPTH)[0], pt(0, 0)[1] - LEVELS * EDGE
+    w = pt(cols, 0)[0] - left + 2 * PAD
+    h = pt(cols, DEPTH)[1] + THICK - top + 2 * PAD
+    ox, oy = PAD - left, PAD - top
 
     s = SEAM
     tiles = "".join(
