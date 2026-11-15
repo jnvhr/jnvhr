@@ -1,7 +1,7 @@
 <div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/name-dark.svg">
-    <img src="assets/name-light.svg" width="74%" alt="JNVHR in green 3D blocks on a slab">
+    <img src="assets/name-light.svg" width="74%" alt="JNVHR in gold 3D blocks on a slab">
   </picture>
 
   <h1>Hi, I'm jnvhr <picture><img src="https://user-images.githubusercontent.com/74038190/214644152-52f47eb3-5e31-4f47-8758-05c9468d5596.gif" width="34" alt="waving hand"></picture></h1>
@@ -14,11 +14,11 @@
   </p>
 
   <p>
-    <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-21262d?style=for-the-badge&logo=x&logoColor=39d353" alt="X"></a>
-    <a href="https://www.instagram.com/jnvhrr/"><img src="https://img.shields.io/badge/Instagram-21262d?style=for-the-badge&logo=instagram&logoColor=39d353" alt="Instagram"></a>
-    <a href="https://www.threads.com/@jnvhrr"><img src="https://img.shields.io/badge/Threads-21262d?style=for-the-badge&logo=threads&logoColor=39d353" alt="Threads"></a>
-    <a href="https://www.linkedin.com/in/janvher-lucas-sarmiento-4a0017379/"><img src="https://img.shields.io/badge/LinkedIn-21262d?style=for-the-badge" alt="LinkedIn"></a>
-    <a href="https://www.facebook.com/janvherlucas.sarmiento"><img src="https://img.shields.io/badge/Facebook-21262d?style=for-the-badge&logo=facebook&logoColor=39d353" alt="Facebook"></a>
+    <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-262626?style=for-the-badge&logo=x&logoColor=f5b420" alt="X"></a>
+    <a href="https://www.instagram.com/jnvhrr/"><img src="https://img.shields.io/badge/Instagram-262626?style=for-the-badge&logo=instagram&logoColor=f5b420" alt="Instagram"></a>
+    <a href="https://www.threads.com/@jnvhrr"><img src="https://img.shields.io/badge/Threads-262626?style=for-the-badge&logo=threads&logoColor=f5b420" alt="Threads"></a>
+    <a href="https://www.linkedin.com/in/janvher-lucas-sarmiento-4a0017379/"><img src="https://img.shields.io/badge/LinkedIn-262626?style=for-the-badge" alt="LinkedIn"></a>
+    <a href="https://www.facebook.com/janvherlucas.sarmiento"><img src="https://img.shields.io/badge/Facebook-262626?style=for-the-badge&logo=facebook&logoColor=f5b420" alt="Facebook"></a>
   </p>
 
   <p>

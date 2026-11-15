@@ -3,13 +3,14 @@
 
     python3 tools/draw_name.py
 
-"JNVHR" stands in green blocks on a slab, seen from the same angle and in
-the same colours as the 3D contribution graph below it (the angle lives in
-view.py). Writes assets/name-dark.svg and assets/name-light.svg.
-No dependencies.
+"JNVHR" stands in gold blocks on a slab, seen from the same angle and in
+the same colours as the 3D contribution graph below it. The angle lives in
+view.py and the colours in palette.py. Writes assets/name-dark.svg and
+assets/name-light.svg. No dependencies.
 """
 from pathlib import Path
 
+from palette import THEMES, darker
 from view import COS_PITCH, ground
 
 TEXT = "JNVHR"
@@ -31,20 +32,6 @@ DEPTH, WALL = 3, 1  # slab rows, and the row the letters stand on
 THICK = 9.0  # slab
 SEAM = 0.06  # gap around each floor tile, in cells
 PAD = 12.0
-
-THEMES = {
-    # floor and greens are GitHub's own contribution colours for each theme
-    "dark": {"floor": "#21262d", "seam": "#161b22", "block": "#39d353", "glow": "#9cf5b0"},
-    "light": {"floor": "#ebedf0", "seam": "#d1d9e0", "block": "#40c463", "glow": "#aaf0bb"},
-}
-
-
-def darker(colour, k):
-    """The shading the contribution graph uses for the sides of a block."""
-    f = 0.7**k
-    r, g, b = (int(colour[i : i + 2], 16) for i in (1, 3, 5))
-    return "#%02x%02x%02x" % (round(r * f), round(g * f), round(b * f))
-
 
 def n(v):
     s = f"{v:.2f}".rstrip("0").rstrip(".")

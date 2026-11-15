@@ -8,10 +8,12 @@ BUILT and COMMANDS to change what it says. It is drawn twice from the same
 words: assets/intro-wide.svg spans the page, and assets/intro-narrow.svg
 wraps the same text for phones, where the wide one would be too small to
 read. No dependencies: the text is set in whatever monospace font the
-reader's system has.
+reader's system has. The colours live in palette.py.
 """
 from html import escape
 from pathlib import Path
+
+from palette import TERMINAL as INK
 
 ABOUT = ["I don't keep a list of ideas.", "I keep a list of things I built."]
 BUILT = ["browser-tools/", "native-mac-app/", "encrypted-chat/", "music-video.py"]
@@ -25,13 +27,6 @@ LAYOUTS = {
     "narrow": {"font": 18.0, "about": 1, "built": 2, "bar": 18},
 }
 GUTTER = 3  # characters between two columns of a listing
-
-INK = {
-    "card": "#010409", "edge": "#30363d", "title": "#8b949e",
-    "prompt": "#39d353", "typed": "#f0f6fc", "printed": "#c9d1d9", "listed": "#7ee787",
-    "bar": "#39d353", "track": "#0e4429",
-}
-LIGHTS = ("#ff5f57", "#febc2e", "#28c840")
 
 KEY = 0.055  # seconds per keystroke
 PAUSE = 0.9  # between a command's output and the next prompt
@@ -135,7 +130,7 @@ def draw(name):
     r = font / 3
     lights = "".join(
         f'<circle cx="{n(pad_x - r + j * r * 3.3 + r)}" cy="{n(title_bar / 2)}" r="{n(r)}" fill="{c}"/>'
-        for j, c in enumerate(LIGHTS)
+        for j, c in enumerate(INK["lights"])
     )
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {n(w)} {n(h)}" width="{n(w)}" height="{n(h)}" '
