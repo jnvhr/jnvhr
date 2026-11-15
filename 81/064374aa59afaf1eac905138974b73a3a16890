@@ -1,0 +1,25 @@
+assets/name-dark.svg
+  s_0913df956d9d77::t_1fcdb159f8774f 1
+assets/name-light.svg
+  s_0913df956d9d77::t_1fcdb159f8774f 1
+tools/draw_name.py
+  s_0913df956d9d77::t_1fcdb159f8774f 10-11,51-53,156-163,179,181-184,186
+README.md
+  s_0913df956d9d77::t_1fcdb159f8774f 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "81064374aa59afaf1eac905138974b73a3a16890",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
