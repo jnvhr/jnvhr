@@ -8,7 +8,7 @@
 
   <p><b>From idea to execution.</b></p>
 
-  <p>I always execute on the ideas that spark in my head.<br>Browser tools, a native Mac app, encrypted team chat, and a music video rendered from Python.</p>
+  <p>When an idea sparks, I build it.<br>So far: browser tools, a native Mac app, encrypted team chat, and a music video rendered from Python.</p>
 
   <p>
     <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-21262d?style=for-the-badge&logo=x&logoColor=39d353" alt="X"></a>
