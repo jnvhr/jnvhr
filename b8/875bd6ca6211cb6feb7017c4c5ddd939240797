@@ -1,0 +1,28 @@
+.github/workflows/profile-graphics.yml
+  s_0913df956d9d77::t_25f266cf7b4391 7-8,47-48,54
+tools/draw_hero.py
+  s_0913df956d9d77::t_f82e1589e10274 1-365,369-420
+  s_0913df956d9d77::t_69ccd167451070 366-368
+assets/hero-wide.svg
+  s_0913df956d9d77::t_69ccd167451070 1
+README.md
+  s_0913df956d9d77::t_25f266cf7b4391 3-4,11-12
+assets/hero-narrow.svg
+  s_0913df956d9d77::t_69ccd167451070 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b8875bd6ca6211cb6feb7017c4c5ddd939240797",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
