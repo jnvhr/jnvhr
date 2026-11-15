@@ -6,9 +6,9 @@
 
   <h1>Hi, I'm jnvhr <picture><img src="https://user-images.githubusercontent.com/74038190/214644152-52f47eb3-5e31-4f47-8758-05c9468d5596.gif" width="34" alt="waving hand"></picture></h1>
 
-  <p><b>Tools that do real work.</b></p>
+  <p><b>From idea to execution.</b></p>
 
-  <p>I build small tools and ship them. Most of them run in the browser.<br>One is a music video drawn frame by frame in Python.</p>
+  <p>I always execute on the ideas that spark in my head.<br>Browser tools, a native Mac app, encrypted team chat, and a music video rendered from Python.</p>
 
   <p>
     <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-21262d?style=for-the-badge&logo=x&logoColor=39d353" alt="X"></a>
