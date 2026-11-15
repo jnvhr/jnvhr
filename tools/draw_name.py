@@ -5,14 +5,14 @@
 
 "JNVHR" stands in gold blocks on a slab, seen from the same angle and in
 the same colours as the 3D contribution graph below it. Around the name a
-small story loops: a spark hovering at the left dips down and touches the
-slab, a pulse of light starts from the tile it touched and runs along the
-slab under the letters, and when it reaches the right end a rocket lifts
+small story loops: a spark hovering at the left comes down and rests on the
+slab, the tile under it lights up, a line of light leaves that tile and
+runs along the slab to the rocket at the right end, and the rocket lifts
 off, leaves the picture, and comes back down to land on its pad.
 Idea to execution.
 
 The angle lives in view.py and the colours in palette.py. Writes
-assets/name-dark.svg and assets/name-light.svg. No dependencies.
+assets/banner-dark.svg and assets/banner-light.svg. No dependencies.
 """
 from pathlib import Path
 
@@ -47,10 +47,12 @@ PAD = 12.0
 # the loop, in seconds
 INTRO = 3.0  # the name builds itself first
 LOOP = 10.0
-SPARK_AT = 0.7  # the spark touches the slab
-STEP = 0.06  # the pulse takes this long per column
+SPARK_AT = 0.9  # the spark touches the slab
+REST = 0.55  # ... and stays on it this long
+LINE_AFTER = 0.25  # the line leaves this long after the touch
+STEP = 0.055  # the line takes this long per tile
 CLIMB = 1.9  # lift-off to out of the picture
-AWAY = 1.7  # out of sight
+AWAY = 1.4  # out of sight
 DESCENT = 2.2  # back in at the top, down to the pad
 
 
@@ -107,21 +109,27 @@ def draw(theme):
 
     s = SEAM
     tile = lambda c, r: poly([pt(c + s, r + s), pt(c + 1 - s, r + s), pt(c + 1 - s, r + 1 - s), pt(c + s, r + 1 - s)])
-    tiles = "".join(tile(c, r) for c in range(cols) for r in range(DEPTH) if r != TRACK)
+    tiles = "".join(tile(c, r) for c in range(cols) for r in range(DEPTH) if r != TRACK and (c, r) != (pad, WALL))
     slab = poly([pt(0, 0), pt(cols, 0), pt(cols, DEPTH), pt(0, DEPTH)])
     edge_left = poly([pt(0, DEPTH), pt(cols, DEPTH), pt(cols, DEPTH, -THICK), pt(0, DEPTH, -THICK)])
     edge_right = poly([pt(cols, DEPTH), pt(cols, 0), pt(cols, 0, -THICK), pt(cols, DEPTH, -THICK)])
 
-    # when the pulse passes a column, counted from the start of a loop
-    passes = lambda c: SPARK_AT + max(0, c - touch) * STEP
-    lands = passes(pad)  # ... and when it reaches the rocket
+    # when the line passes a column, counted from the start of a loop
+    line_at = SPARK_AT + LINE_AFTER
+    passes = lambda c: line_at + max(0, c - touch) * STEP
+    lands = passes(pad) + STEP  # ... and when it reaches the tile under the rocket
     pc = lambda seconds: n(100 * seconds / LOOP)  # a moment in the loop, as a keyframe percentage
 
-    # the track: one tile per column, each lit as the pulse goes by
-    track = "".join(
-        f'<path class="p" style="animation-delay:{n(INTRO + passes(c))}s" d="{tile(c, TRACK)}"/>'
-        for c in range(touch, pad + 1)
-    ) + f'<path fill="{t["floor"]}" d="{"".join(tile(c, TRACK) for c in list(range(touch)) + list(range(pad + 1, cols)))}"/>'
+    # the line: the tile the spark touches, the track in front of the letters, then in under the rocket
+    track = (
+        f'<path class="p0" d="{tile(touch, TRACK)}"/>'
+        + "".join(
+            f'<path class="p" style="animation-delay:{n(INTRO + passes(c))}s" d="{tile(c, TRACK)}"/>'
+            for c in range(touch + 1, pad + 1)
+        )
+        + f'<path class="p" style="animation-delay:{n(INTRO + lands)}s" d="{tile(pad, WALL)}"/>'
+        + f'<path fill="{t["floor"]}" d="{"".join(tile(c, TRACK) for c in list(range(touch)) + list(range(pad + 1, cols)))}"/>'
+    )
 
     # one block, drawn once: the three faces you can see
     back, right, front, left_ = pt(0, 0), pt(1, 0), pt(1, 1), pt(0, 1)
@@ -171,19 +179,23 @@ def draw(theme):
         # the name builds itself once
         + ".b{animation:drop .7s cubic-bezier(.2,.9,.3,1) backwards}"
         f"@keyframes drop{{from{{opacity:0;transform:translateY({n(-2.2 * EDGE)}px)}}}}"
-        # the pulse: along the track, and up the letters it passes
+        # the line: along the track, and up the letters it passes
         f".p{{fill:{t['floor']};animation:pulse {LOOP}s linear infinite}}"
         f"@keyframes pulse{{0%,9%,100%{{fill:{t['floor']}}}.6%{{fill:{sp}}}3.5%{{fill:{gold}}}}}"
+        # the tile the spark touches lights on contact and stays lit until the line has left it
+        f".p0{{fill:{t['floor']};animation:touch {LOOP}s linear {n(INTRO)}s infinite}}"
+        f"@keyframes touch{{0%,{pc(SPARK_AT - 0.02)}%,{pc(line_at + 0.9)}%,100%{{fill:{t['floor']}}}"
+        f"{pc(SPARK_AT)}%,{pc(line_at)}%{{fill:{sp}}}{pc(line_at + 0.35)}%{{fill:{gold}}}}}"
         f".nl{{animation:lit {LOOP}s ease-in-out infinite}}"
         f"@keyframes lit{{0%,9%,100%{{fill:{darker(gold, 0.5)}}}3%{{fill:{t['glow']}}}}}"
-        # the spark: winds up, comes down to touch the slab, springs back, then drifts until next time
+        # the spark: winds up, comes down, rests on the slab while the line leaves, springs back, then drifts
         f".tap{{animation:tap {LOOP}s ease-in-out {n(INTRO)}s infinite}}"
         f"@keyframes tap{{0%,100%{{transform:translateY(0)}}"
-        f"{pc(SPARK_AT - 0.42)}%{{transform:translateY(-6px);animation-timing-function:cubic-bezier(.6,0,.9,.55)}}"
+        f"{pc(SPARK_AT - 0.6)}%{{transform:translateY(-6px);animation-timing-function:cubic-bezier(.55,0,.85,.6)}}"
         f"{pc(SPARK_AT)}%{{transform:translateY({n(reach)}px);animation-timing-function:linear}}"
-        f"{pc(SPARK_AT + 0.14)}%{{transform:translateY({n(reach)}px);animation-timing-function:cubic-bezier(.2,.8,.3,1)}}"
-        f"{pc(SPARK_AT + 0.8)}%{{transform:translateY(-7px)}}"
-        "32%,70%{transform:translateY(0)}51%,87%{transform:translateY(-7px)}}"
+        f"{pc(SPARK_AT + REST)}%{{transform:translateY({n(reach)}px);animation-timing-function:cubic-bezier(.2,.8,.3,1)}}"
+        f"{pc(SPARK_AT + REST + 0.7)}%{{transform:translateY(-7px)}}"
+        "40%,76%{transform:translateY(0)}58%,90%{transform:translateY(-7px)}}"
         # the rocket: waits, lifts off when the pulse lands, and lands again, braking as it comes down
         f".fly{{animation:fly {LOOP}s linear {n(INTRO)}s infinite}}"
         f"@keyframes fly{{0%,{pc(off)}%{{transform:translateY(0);animation-timing-function:cubic-bezier(.55,0,.9,.45)}}"
@@ -217,8 +229,8 @@ def main():
     out.mkdir(exist_ok=True)
     for theme in THEMES:
         data = draw(theme)
-        (out / f"name-{theme}.svg").write_text(data, encoding="utf-8")
-        print(f"name-{theme}.svg  {len(data) / 1024:.1f} KB")
+        (out / f"banner-{theme}.svg").write_text(data, encoding="utf-8")
+        print(f"banner-{theme}.svg  {len(data) / 1024:.1f} KB")
 
 
 if __name__ == "__main__":
