@@ -1,0 +1,78 @@
+name: Profile graphics
+
+# Redraws the images the profile README shows:
+#   profile-3d-contrib/*.svg     3D contribution graph   (yoshi389111/github-profile-3d-contrib)
+#   metrics/commit-calendar.svg  isometric commit calendar (lowlighter/metrics)
+#   metrics/activity.svg         recent activity and notable contributions (lowlighter/metrics)
+
+on:
+  schedule:
+    - cron: "0 18 * * *" # once a day
+  workflow_dispatch:
+  push:
+    branches: [master, readme-redesign]
+    paths: [".github/workflows/profile-graphics.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-graphics-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 3D contribution graph
+        uses: yoshi389111/github-profile-3d-contrib@v0.9.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+
+      - name: Isometric commit calendar
+        uses: lowlighter/metrics@latest
+        continue-on-error: true
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: ${{ github.repository_owner }}
+          filename: commit-calendar.svg
+          base: ""
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          output_action: none
+
+      - name: Recent activity and notable contributions
+        uses: lowlighter/metrics@latest
+        continue-on-error: true
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          user: ${{ github.repository_owner }}
+          filename: activity.svg
+          base: activity
+          plugin_notable: yes
+          plugin_notable_from: all
+          plugin_notable_repositories: yes
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_days: 0
+          plugin_activity_visibility: public
+          plugin_activity_filter: pr, review, issue, release, push
+          output_action: none
+
+      - name: Commit
+        run: |
+          mkdir -p metrics
+          if ls /metrics_renders/*.svg >/dev/null 2>&1; then
+            sudo mv /metrics_renders/*.svg metrics/
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A profile-3d-contrib metrics
+          if ! git diff --cached --quiet; then
+            git commit -m "Update profile graphics"
+            git pull --rebase
+            git push
+          fi
