@@ -1,0 +1,32 @@
+README.md
+  s_7adcf9abbe10c3::t_2e8b01723f1418 3-4,11-12
+tools/draw_hero.py
+  s_7adcf9abbe10c3::t_efa35658d3a29a 15-28
+  s_7adcf9abbe10c3::t_1a61471ff9e7ae 273-277,283-302
+  s_7adcf9abbe10c3::t_e5112a1798cf81 396,399-402,406-422,426-428
+  s_7adcf9abbe10c3::t_4344e231e5e573 159-167
+assets/banner-light.svg
+  s_7adcf9abbe10c3::t_2e8b01723f1418 1
+assets/terminal-wide.svg
+  s_7adcf9abbe10c3::t_2e8b01723f1418 1
+assets/banner-dark.svg
+  s_7adcf9abbe10c3::t_2e8b01723f1418 1
+assets/terminal-narrow.svg
+  s_7adcf9abbe10c3::t_2e8b01723f1418 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7140078137e75030d5708d725090bc000c1e6f90",
+  "prompts": {},
+  "sessions": {
+    "s_7adcf9abbe10c3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e0e6dae4-7162-4972-b8a9-dd4a67c68296",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
