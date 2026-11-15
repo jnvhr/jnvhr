@@ -32,8 +32,8 @@
 ## Contributions in 3D
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="profile-3d-contrib/profile-night-rainbow.svg">
-  <img src="profile-3d-contrib/profile-season-animate.svg" width="100%" alt="3D graph of a year of contributions">
+  <source media="(prefers-color-scheme: dark)" srcset="profile-3d-contrib/profile-dark.svg">
+  <img src="profile-3d-contrib/profile-light.svg" width="100%" alt="3D graph of a year of contributions">
 </picture>
 
 ### Commits, last six months

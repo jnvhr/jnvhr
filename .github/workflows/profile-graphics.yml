@@ -1,8 +1,8 @@
 name: Profile graphics
 
 # Redraws the images the profile README shows:
-#   profile-3d-contrib/*.svg        3D contribution graph      (yoshi389111/github-profile-3d-contrib)
-#   metrics/commit-calendar-*.svg   isometric commit calendar  (lowlighter/metrics)
+#   profile-3d-contrib/profile-*.svg  3D contribution graph    (yoshi389111/github-profile-3d-contrib)
+#   metrics/commit-calendar-*.svg     isometric commit calendar (lowlighter/metrics)
 
 on:
   schedule:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   push:
     branches: [master, readme-redesign]
-    paths: [".github/workflows/profile-graphics.yml"]
+    paths: [".github/workflows/profile-graphics.yml", ".github/profile-3d-contrib.json"]
 
 permissions:
   contents: write
@@ -30,6 +30,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
+          # GitHub's own greens on a dark slab (and a light twin), instead of the stock themes
+          SETTING_JSON: .github/profile-3d-contrib.json
 
       # The calendar is drawn twice so the README can pick one per theme.
       - name: Commit calendar, light
