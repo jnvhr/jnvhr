@@ -1,0 +1,41 @@
+assets/intro-wide.svg
+  s_0913df956d9d77::t_38f0c4ae14a9e3 1
+assets/name-dark.svg
+  s_0913df956d9d77::t_38f0c4ae14a9e3 1
+assets/name-light.svg
+  s_0913df956d9d77::t_38f0c4ae14a9e3 1
+.github/profile-3d-contrib.json
+  s_0913df956d9d77::t_38f0c4ae14a9e3 6-9,11-17,23-26,28-34
+.github/workflows/profile-graphics.yml
+  s_0913df956d9d77::t_2bc79111dd4ce5 3-4,31-34,56
+profile-3d-contrib/profile-dark.svg
+  s_0913df956d9d77::t_2bc79111dd4ce5 2-3,6-8,11-12,15-29
+profile-3d-contrib/profile-light.svg
+  s_0913df956d9d77::t_2bc79111dd4ce5 2-3,6-8,11-12,15-29
+README.md
+  s_0913df956d9d77::t_2bc79111dd4ce5 4,17-21
+assets/intro-narrow.svg
+  s_0913df956d9d77::t_38f0c4ae14a9e3 1
+tools/draw_intro.py
+  s_0913df956d9d77::t_41895126d45fb9 11,16-17,133
+tools/draw_name.py
+  s_0913df956d9d77::t_6adc101f3babb8 6-9,13
+tools/palette.py
+  s_0913df956d9d77::t_3442478542908f 1-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "991dab9fe8f6f61bfb9d49676d3f51ade50d963d",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
