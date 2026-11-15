@@ -1,0 +1,37 @@
+assets/name-dark.svg
+  s_0913df956d9d77::t_e0cea0ac6e4060 1
+assets/name-light.svg
+  s_0913df956d9d77::t_e0cea0ac6e4060 1
+tools/turn_graph.py
+  s_0913df956d9d77::t_a10ff6d0069220 1-105
+tools/view.py
+  s_0913df956d9d77::t_e0cea0ac6e4060 1-18
+tools/draw_name.py
+  s_0913df956d9d77::t_e0cea0ac6e4060 6-9,13-14,26-27,55-57,77-80
+.github/workflows/profile-graphics.yml
+  s_0913df956d9d77::t_20ac877af0e104 3-7,15,38-44,49
+.gitignore
+  s_0913df956d9d77::t_9fbaeeee8bd2d0 1
+README.md
+  s_0913df956d9d77::t_c3a3d0a17d4090 4
+profile-3d-contrib/profile-dark.svg
+  s_0913df956d9d77::t_d64b7bd8420c36 29
+profile-3d-contrib/profile-light.svg
+  s_0913df956d9d77::t_62e3b2ccc068ba 29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "c949c5c837d47195fd3ca12a13ead896530e0c0f",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
