@@ -36,15 +36,6 @@
   <img src="profile-3d-contrib/profile-light.svg" width="100%" alt="3D graph of a year of contributions">
 </picture>
 
-### Commits, last six months
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="metrics/commit-calendar-dark.svg">
-    <img src="metrics/commit-calendar-light.svg" width="72%" alt="Isometric calendar of the last six months of commits">
-  </picture>
-</p>
-
 ## Everything I've built
 
 | Project | What it is | Where |
@@ -73,4 +64,4 @@
 
 <picture><img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="100%" alt=""></picture>
 
-<p align="center"><sub>The 3D graph is drawn by <a href="https://github.com/yoshi389111/github-profile-3d-contrib">github-profile-3d-contrib</a>, the calendar by <a href="https://github.com/lowlighter/metrics">metrics</a>, and both refresh daily. GIFs are from <a href="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub">Cool-GIFs-For-GitHub</a>.</sub></p>
+<p align="center"><sub>The 3D graph is drawn by <a href="https://github.com/yoshi389111/github-profile-3d-contrib">github-profile-3d-contrib</a> and refreshes daily. GIFs are from <a href="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub">Cool-GIFs-For-GitHub</a>.</sub></p>
