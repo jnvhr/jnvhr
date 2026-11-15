@@ -1,0 +1,27 @@
+tools/draw_name.py
+  s_0913df956d9d77::t_a81d7fb074a0c6 1-5,7-14,16-23,25,29,32-34,37-40,42-52,54-61,64-65,67,69-72,79,81,83,87,106-107,109,116-121,123,126-127,129-142
+  s_0913df956d9d77::t_cf1d34bf634009 27
+  s_0913df956d9d77::t_9ab4d544d57410 6,15,24,26,28,30-31,35-36,41,53,62-63,66,68,73-78,80,82,84-86,88-105,108,110-115,122,124-125,128
+README.md
+  s_0913df956d9d77::t_3e6eefb3855b10 2-5,14-18
+assets/name-light.svg
+  s_0913df956d9d77::t_cf1d34bf634009 1
+assets/name-dark.svg
+  s_0913df956d9d77::t_cf1d34bf634009 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ac6a9969665732c3f6ff5918824b2bbc1be35a6e",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
