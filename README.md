@@ -1,7 +1,7 @@
 <div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/name-dark.svg">
-    <img src="assets/name-light.svg" width="94%" alt="JNVHR in gold 3D blocks on a slab. A spark at one end sends a pulse under the letters, and a rocket at the other end lifts off.">
+    <img src="assets/name-light.svg" width="94%" alt="JNVHR in gold 3D blocks on a slab. A spark at one end sends a pulse under the letters, and a rocket at the other end lifts off and lands again.">
   </picture>
 
   <h1>Hi, I'm jnvhr <picture><img src="https://user-images.githubusercontent.com/74038190/214644152-52f47eb3-5e31-4f47-8758-05c9468d5596.gif" width="34" alt="waving hand"></picture></h1>

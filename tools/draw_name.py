@@ -7,7 +7,8 @@
 the same colours as the 3D contribution graph below it. Around the name a
 small story loops: a spark at the left flashes, a pulse of light runs along
 the slab under the letters, and when it reaches the right end a rocket
-lifts off. A new rocket then drops onto the pad. Idea to execution.
+lifts off, leaves the picture, and comes back down to land on its pad.
+Idea to execution.
 
 The angle lives in view.py and the colours in palette.py. Writes
 assets/name-dark.svg and assets/name-light.svg. No dependencies.
@@ -47,7 +48,9 @@ INTRO = 3.0  # the name builds itself first
 LOOP = 10.0
 SPARK_AT = 0.5  # the spark flashes
 STEP = 0.06  # the pulse takes this long per column
-FLIGHT = 300.0  # how far the rocket climbs, in page units
+CLIMB = 1.9  # lift-off to out of the picture
+AWAY = 1.7  # out of sight
+DESCENT = 2.2  # back in at the top, down to the pad
 
 
 def n(v):
@@ -150,8 +153,14 @@ def draw(theme):
     shade = lambda kind, colour: (
         f".{kind}l{{fill:{darker(colour, 0.5)}}}.{kind}r{{fill:{darker(colour, 1)}}}.{kind}u{{fill:{colour}}}"
     )
-    off, climb, gone = lands + 0.15, lands + 2.0, lands + 2.3  # lift-off, top of the climb, faded out
-    back_at, down_at = LOOP - 1.8, LOOP - 0.9  # the next rocket appears, and lands
+    # the rocket never fades: it flies out past the top of the picture and back in again
+    foot = oy + pt(pad + 2, WALL + 1)[1] + len(FLAME) * EDGE  # lowest point of rocket and flame, on the page
+    flight = foot + 12
+    off = lands + 0.15  # lift-off
+    out = off + CLIMB  # the last of the flame leaves the picture
+    back = out + AWAY  # the nose comes back in
+    down = back + DESCENT  # touchdown
+    assert down < LOOP - 0.6, "the flight does not fit in one loop"
     css = (
         "use{stroke:#000;stroke-opacity:.34;stroke-width:.6;stroke-linejoin:round}"
         + shade("n", gold) + shade("s", sp) + shade("h", hull)
@@ -167,15 +176,14 @@ def draw(theme):
         ".hover{animation:hover 2.6s ease-in-out infinite alternate}@keyframes hover{to{transform:translateY(-7px)}}"
         f".flare{{animation:flare {LOOP}s ease-out {n(INTRO)}s infinite}}"
         f"@keyframes flare{{0%,{pc(SPARK_AT - 0.35)}%,{pc(SPARK_AT + 0.9)}%,100%{{opacity:1}}{pc(SPARK_AT)}%{{opacity:.25}}{pc(SPARK_AT + 0.12)}%{{opacity:1}}}}"
-        # the rocket: waits, lifts off when the pulse lands, and a new one drops onto the pad
+        # the rocket: waits, lifts off when the pulse lands, and lands again, braking as it comes down
         f".fly{{animation:fly {LOOP}s linear {n(INTRO)}s infinite}}"
-        f"@keyframes fly{{0%,{pc(off)}%{{transform:translateY(0);opacity:1;animation-timing-function:cubic-bezier(.55,0,.9,.45)}}"
-        f"{pc(climb)}%{{transform:translateY({n(-FLIGHT)}px);opacity:1}}"
-        f"{pc(gone)}%{{transform:translateY({n(-FLIGHT * 1.12)}px);opacity:0}}"
-        f"{pc(back_at)}%{{transform:translateY({n(-3 * EDGE)}px);opacity:0;animation-timing-function:cubic-bezier(.2,.9,.3,1)}}"
-        f"{pc(down_at)}%,100%{{transform:translateY(0);opacity:1}}}}"
+        f"@keyframes fly{{0%,{pc(off)}%{{transform:translateY(0);animation-timing-function:cubic-bezier(.55,0,.9,.45)}}"
+        f"{pc(out)}%,{pc(back)}%{{transform:translateY({n(-flight)}px);animation-timing-function:cubic-bezier(.12,.5,.3,1)}}"
+        f"{pc(down)}%,100%{{transform:translateY(0)}}}}"
+        # its flame burns from ignition to touchdown
         f".burn{{animation:burn {LOOP}s steps(1) {n(INTRO)}s infinite}}"
-        f"@keyframes burn{{0%{{opacity:0}}{pc(lands)}%{{opacity:1}}{pc(gone)}%,100%{{opacity:0}}}}"
+        f"@keyframes burn{{0%{{opacity:0}}{pc(lands)}%{{opacity:1}}{pc(down)}%,100%{{opacity:0}}}}"
         ".flick{animation:flick .13s steps(1) infinite}@keyframes flick{50%{opacity:.55}}"
         "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
     )
