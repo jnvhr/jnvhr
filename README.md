@@ -6,10 +6,12 @@
 
   <h1>Hi, I'm jnvhr <picture><img src="https://user-images.githubusercontent.com/74038190/214644152-52f47eb3-5e31-4f47-8758-05c9468d5596.gif" width="34" alt="waving hand"></picture></h1>
 
-  <picture>
-    <source media="(max-width: 640px)" srcset="assets/intro-narrow.svg">
-    <img src="assets/intro-wide.svg" width="100%" alt="A terminal. cat about.txt prints: I don't keep a list of ideas. I keep a list of things I built. ls built lists browser tools, a native Mac app, encrypted chat and a music video in Python. Then it runs: idea --next | build | ship.">
-  </picture>
+  <p>
+    <picture>
+      <source media="(max-width: 640px)" srcset="assets/intro-narrow.svg">
+      <img src="assets/intro-wide.svg" width="100%" alt="A terminal. cat about.txt prints: I don't keep a list of ideas. I keep a list of things I built. ls built lists browser tools, a native Mac app, encrypted chat and a music video in Python. Then it runs: idea --next | build | ship.">
+    </picture>
+  </p>
 
   <p>
     <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-21262d?style=for-the-badge&logo=x&logoColor=39d353" alt="X"></a>
