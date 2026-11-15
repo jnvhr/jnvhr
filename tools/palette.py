@@ -48,6 +48,8 @@ DARK = {
     "seam": mix(BG, GRID, 0.45),
     "block": GOLD,
     "glow": GOLD_LIGHT,
+    "spark": GOLD_LIGHT,  # the idea, the pulse it sends and the rocket's flame
+    "rocket": INK,
     "text": INK,
     "quiet": DIM,
     "number": GOLD,
@@ -61,6 +63,8 @@ LIGHT = {
     "seam": PAPER_GRID,
     "block": GOLD,
     "glow": GOLD_LIGHT,
+    "spark": GOLD_MID,
+    "rocket": GRID2,
     "text": BG,
     "quiet": DIM,
     "number": GOLD_DARK,
