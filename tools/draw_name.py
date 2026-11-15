@@ -5,9 +5,10 @@
 
 "JNVHR" stands in gold blocks on a slab, seen from the same angle and in
 the same colours as the 3D contribution graph below it. Around the name a
-small story loops: a spark at the left flashes, a pulse of light runs along
-the slab under the letters, and when it reaches the right end a rocket
-lifts off, leaves the picture, and comes back down to land on its pad.
+small story loops: a spark hovering at the left dips down and touches the
+slab, a pulse of light starts from the tile it touched and runs along the
+slab under the letters, and when it reaches the right end a rocket lifts
+off, leaves the picture, and comes back down to land on its pad.
 Idea to execution.
 
 The angle lives in view.py and the colours in palette.py. Writes
@@ -46,7 +47,7 @@ PAD = 12.0
 # the loop, in seconds
 INTRO = 3.0  # the name builds itself first
 LOOP = 10.0
-SPARK_AT = 0.5  # the spark flashes
+SPARK_AT = 0.7  # the spark touches the slab
 STEP = 0.06  # the pulse takes this long per column
 CLIMB = 1.9  # lift-off to out of the picture
 AWAY = 1.7  # out of sight
@@ -79,9 +80,11 @@ def stamp(art, col, floor=0):
 
 
 def layout():
-    """Where everything stands: column count, then the spark, the name, the rocket and its flame."""
+    """Where everything stands: column count; the spark, the name, the rocket and its flame;
+    then the two ends of the pulse, the column the spark touches and the rocket's pad."""
     col = SIDE
     spark = stamp(SPARK, col, SPARK_FLOATS)
+    touch = col + len(SPARK[0]) // 2  # the column whose tile the spark comes down on
     col += len(SPARK[0]) + APART
     name = []
     for ch in TEXT:
@@ -91,12 +94,12 @@ def layout():
     rocket = stamp(ROCKET, col)
     flame = stamp(FLAME, col, -len(FLAME))
     pad = col + len(ROCKET[0]) // 2  # the column the pulse stops at
-    return col + len(ROCKET[0]) + SIDE, spark, name, rocket, flame, pad
+    return col + len(ROCKET[0]) + SIDE, spark, name, rocket, flame, touch, pad
 
 
 def draw(theme):
     t = THEMES[theme]
-    cols, spark, name, rocket, flame, pad = layout()
+    cols, spark, name, rocket, flame, touch, pad = layout()
     left, top = pt(0, DEPTH)[0], pt(0, 0)[1] - LEVELS * EDGE
     w = pt(cols, 0)[0] - left + 2 * PAD
     h = pt(cols, DEPTH)[1] + THICK - top + 2 * PAD
@@ -110,15 +113,15 @@ def draw(theme):
     edge_right = poly([pt(cols, DEPTH), pt(cols, 0), pt(cols, 0, -THICK), pt(cols, DEPTH, -THICK)])
 
     # when the pulse passes a column, counted from the start of a loop
-    passes = lambda c: SPARK_AT + max(0, c - SIDE - 1) * STEP
+    passes = lambda c: SPARK_AT + max(0, c - touch) * STEP
     lands = passes(pad)  # ... and when it reaches the rocket
     pc = lambda seconds: n(100 * seconds / LOOP)  # a moment in the loop, as a keyframe percentage
 
     # the track: one tile per column, each lit as the pulse goes by
     track = "".join(
         f'<path class="p" style="animation-delay:{n(INTRO + passes(c))}s" d="{tile(c, TRACK)}"/>'
-        for c in range(SIDE, pad + 1)
-    ) + f'<path fill="{t["floor"]}" d="{"".join(tile(c, TRACK) for c in list(range(SIDE)) + list(range(pad + 1, cols)))}"/>'
+        for c in range(touch, pad + 1)
+    ) + f'<path fill="{t["floor"]}" d="{"".join(tile(c, TRACK) for c in list(range(touch)) + list(range(pad + 1, cols)))}"/>'
 
     # one block, drawn once: the three faces you can see
     back, right, front, left_ = pt(0, 0), pt(1, 0), pt(1, 1), pt(0, 1)
@@ -129,9 +132,9 @@ def draw(theme):
         "u": poly([up(back), up(right), up(front), up(left_)]),
     }
 
-    def block(c, k, kind, drop=None, lit=None):
+    def block(c, k, kind, drop=None, lit=None, row=WALL):
         """One block at column c, level k. kind picks its colours."""
-        x, y = pt(c, WALL, k * EDGE)
+        x, y = pt(c, row, k * EDGE)
         fall = f' class="b" style="animation-delay:{n(drop)}s"' if drop is not None else ""
         glow = f' style="animation-delay:{n(lit)}s"' if lit is not None else ""
         return (
@@ -143,13 +146,14 @@ def draw(theme):
     # back to front, bottom to top, so nearer blocks cover the ones behind
     order = lambda cells: sorted(cells, key=lambda cell: (cell[0], cell[1]))
     drop = lambda c, k: 0.2 + c * 0.045 + max(k, 0) * 0.035
-    the_spark = "".join(block(c, k, "s", drop(c, k)) for c, k, _ in order(spark))
+    the_spark = "".join(block(c, k, "s", drop(c, k), row=TRACK) for c, k, _ in order(spark))
     the_name = "".join(block(c, k, "n", drop(c, k), INTRO + passes(c)) for c, k, _ in order(name))
     kinds = {"#": "h", "A": "n", "o": "s"}
     the_rocket = "".join(block(c, k, kinds[ch], drop(c, k)) for c, k, ch in order(rocket))
     the_flame = "".join(block(c, k, "s") for c, k, _ in order(flame))
 
     gold, sp, hull = t["block"], t["spark"], t["rocket"]
+    reach = SPARK_FLOATS * EDGE  # how far the spark comes down to touch the slab
     shade = lambda kind, colour: (
         f".{kind}l{{fill:{darker(colour, 0.5)}}}.{kind}r{{fill:{darker(colour, 1)}}}.{kind}u{{fill:{colour}}}"
     )
@@ -172,10 +176,14 @@ def draw(theme):
         f"@keyframes pulse{{0%,9%,100%{{fill:{t['floor']}}}.6%{{fill:{sp}}}3.5%{{fill:{gold}}}}}"
         f".nl{{animation:lit {LOOP}s ease-in-out infinite}}"
         f"@keyframes lit{{0%,9%,100%{{fill:{darker(gold, 0.5)}}}3%{{fill:{t['glow']}}}}}"
-        # the spark hovers, and flares when it fires
-        ".hover{animation:hover 2.6s ease-in-out infinite alternate}@keyframes hover{to{transform:translateY(-7px)}}"
-        f".flare{{animation:flare {LOOP}s ease-out {n(INTRO)}s infinite}}"
-        f"@keyframes flare{{0%,{pc(SPARK_AT - 0.35)}%,{pc(SPARK_AT + 0.9)}%,100%{{opacity:1}}{pc(SPARK_AT)}%{{opacity:.25}}{pc(SPARK_AT + 0.12)}%{{opacity:1}}}}"
+        # the spark: winds up, comes down to touch the slab, springs back, then drifts until next time
+        f".tap{{animation:tap {LOOP}s ease-in-out {n(INTRO)}s infinite}}"
+        f"@keyframes tap{{0%,100%{{transform:translateY(0)}}"
+        f"{pc(SPARK_AT - 0.42)}%{{transform:translateY(-6px);animation-timing-function:cubic-bezier(.6,0,.9,.55)}}"
+        f"{pc(SPARK_AT)}%{{transform:translateY({n(reach)}px);animation-timing-function:linear}}"
+        f"{pc(SPARK_AT + 0.14)}%{{transform:translateY({n(reach)}px);animation-timing-function:cubic-bezier(.2,.8,.3,1)}}"
+        f"{pc(SPARK_AT + 0.8)}%{{transform:translateY(-7px)}}"
+        "32%,70%{transform:translateY(0)}51%,87%{transform:translateY(-7px)}}"
         # the rocket: waits, lifts off when the pulse lands, and lands again, braking as it comes down
         f".fly{{animation:fly {LOOP}s linear {n(INTRO)}s infinite}}"
         f"@keyframes fly{{0%,{pc(off)}%{{transform:translateY(0);animation-timing-function:cubic-bezier(.55,0,.9,.45)}}"
@@ -197,7 +205,7 @@ def draw(theme):
         f'<path d="{edge_right}" fill="{darker(t["floor"], 1)}"/>'
         f'<path d="{slab}" fill="{t["seam"]}"/>'
         f'<path d="{tiles}" fill="{t["floor"]}"/>{track}'
-        f'<g class="hover"><g class="flare">{the_spark}</g></g>'
+        f'<g class="tap">{the_spark}</g>'
         f"{the_name}"
         f'<g class="fly"><g class="burn" opacity="0"><g class="flick">{the_flame}</g></g>{the_rocket}</g>'
         "</g></svg>\n"
