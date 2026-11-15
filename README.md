@@ -1,7 +1,8 @@
 <div align="center">
-  <picture><img src="https://user-images.githubusercontent.com/74038190/219923809-b86dc415-a0c2-4a38-bc88-ad6cf06395a8.gif" width="21%" align="middle" alt="3D laptop with floating code"></picture>
-  <picture><img src="https://user-images.githubusercontent.com/74038190/212750672-2f3f2b50-c84f-4ed8-a60a-849ae69ff9df.gif" width="46%" align="middle" alt="Isometric animation of a developer working at a desk"></picture>
-  <picture><img src="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub/assets/74038190/0b335028-1d3d-4ee5-b5b3-a373d499be7e" width="21%" align="middle" alt="3D laptop showing a chart"></picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/name-dark.svg">
+    <img src="assets/name-light.svg" width="64%" alt="JNVHR in green 3D blocks on an isometric slab">
+  </picture>
 
   <h1>Hi, I'm jnvhr <picture><img src="https://user-images.githubusercontent.com/74038190/214644152-52f47eb3-5e31-4f47-8758-05c9468d5596.gif" width="34" alt="waving hand"></picture></h1>
 
@@ -10,11 +11,11 @@
   <p>I build small tools and ship them. Most of them run in the browser.<br>One is a music video drawn frame by frame in Python.</p>
 
   <p>
-    <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X"></a>
-    <a href="https://www.instagram.com/jnvhrr/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>
-    <a href="https://www.threads.com/@jnvhrr"><img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" alt="Threads"></a>
-    <a href="https://www.linkedin.com/in/janvher-lucas-sarmiento-4a0017379/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge" alt="LinkedIn"></a>
-    <a href="https://www.facebook.com/janvherlucas.sarmiento"><img src="https://img.shields.io/badge/Facebook-0866FF?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook"></a>
+    <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-21262d?style=for-the-badge&logo=x&logoColor=39d353" alt="X"></a>
+    <a href="https://www.instagram.com/jnvhrr/"><img src="https://img.shields.io/badge/Instagram-21262d?style=for-the-badge&logo=instagram&logoColor=39d353" alt="Instagram"></a>
+    <a href="https://www.threads.com/@jnvhrr"><img src="https://img.shields.io/badge/Threads-21262d?style=for-the-badge&logo=threads&logoColor=39d353" alt="Threads"></a>
+    <a href="https://www.linkedin.com/in/janvher-lucas-sarmiento-4a0017379/"><img src="https://img.shields.io/badge/LinkedIn-21262d?style=for-the-badge" alt="LinkedIn"></a>
+    <a href="https://www.facebook.com/janvherlucas.sarmiento"><img src="https://img.shields.io/badge/Facebook-21262d?style=for-the-badge&logo=facebook&logoColor=39d353" alt="Facebook"></a>
   </p>
 
   <p>
@@ -61,7 +62,5 @@
 | | [Reddit: read search and subreddits from server-rendered HTML when `.json` is blocked](https://github.com/jackwener/OpenCLI/pull/2798) | <img src="https://img.shields.io/github/pulls/detail/state/jackwener/OpenCLI/2798?label=&style=flat-square" alt="pull request 2798 status"> |
 
 [All my public pull requests](https://github.com/search?q=author%3Ajnvhr+is%3Apr+is%3Apublic&type=pullrequests)
-
-<picture><img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="100%" alt=""></picture>
 
 <p align="center"><sub>The 3D graph is drawn by <a href="https://github.com/yoshi389111/github-profile-3d-contrib">github-profile-3d-contrib</a> and refreshes daily. GIFs are from <a href="https://github.com/Anmol-Baranwal/Cool-GIFs-For-GitHub">Cool-GIFs-For-GitHub</a>.</sub></p>
