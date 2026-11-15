@@ -1,15 +1,15 @@
 <div align="center">
   <picture>
-    <source media="(max-width: 640px)" srcset="assets/hero-narrow.svg#banner">
-    <img src="assets/hero-wide.svg#banner" width="94%" alt="JNVHR in gold 3D blocks on a slab. A spark at one end comes down to rest on the slab, a line of light runs from it under the letters to a rocket at the other end, and the rocket lifts off and lands again.">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+    <img src="assets/banner-light.svg" width="94%" alt="JNVHR in gold 3D blocks on a slab. A spark at one end comes down to rest on the slab, a line of light runs from it under the letters to a rocket at the other end, and the rocket lifts off and lands again.">
   </picture>
 
   <h1>Hi, I'm jnvhr <picture><img src="https://user-images.githubusercontent.com/74038190/214644152-52f47eb3-5e31-4f47-8758-05c9468d5596.gif" width="34" alt="waving hand"></picture></h1>
 
   <p>
     <picture>
-      <source media="(max-width: 640px)" srcset="assets/hero-narrow.svg#terminal">
-      <img src="assets/hero-wide.svg#terminal" width="100%" alt="A terminal. cat about.txt prints: I don't keep a list of ideas. I keep a list of things I built. ls built lists browser tools, a native Mac app, encrypted chat and a music video in Python. Then it runs: idea --next | build | ship, and a progress bar follows the banner above: idea, building, shipped.">
+      <source media="(max-width: 640px)" srcset="assets/terminal-narrow.svg">
+      <img src="assets/terminal-wide.svg" width="100%" alt="A terminal. cat about.txt prints: I don't keep a list of ideas. I keep a list of things I built. ls built lists browser tools, a native Mac app, encrypted chat and a music video in Python. Then it runs: idea --next | build | ship, and a progress bar follows the banner above: idea, building, shipped.">
     </picture>
   </p>
 

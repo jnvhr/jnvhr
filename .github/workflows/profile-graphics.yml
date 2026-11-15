@@ -4,8 +4,8 @@ name: Profile graphics
 # tools/palette.py and seen from the camera angle set in tools/view.py:
 #   profile-3d-contrib/profile-*.svg  3D contribution graph, drawn by
 #                                     yoshi389111/github-profile-3d-contrib, then turned
-#   assets/hero-*.svg                 the name banner and the terminal under it, in one file
-#                                     so they animate in step; -narrow is for phones
+#   assets/banner-*.svg               the name banner, one for each theme
+#   assets/terminal-*.svg             the terminal under it; -narrow is for phones
 
 on:
   schedule:
@@ -51,7 +51,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A profile-3d-contrib .github/profile-3d-contrib.json assets/hero-wide.svg assets/hero-narrow.svg
+          git add -A profile-3d-contrib .github/profile-3d-contrib.json assets/banner-*.svg assets/terminal-*.svg
           if ! git diff --cached --quiet; then
             git commit -m "Update profile graphics"
             git pull --rebase

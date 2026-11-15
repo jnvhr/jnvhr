@@ -3,11 +3,6 @@
 
     python3 tools/draw_hero.py
 
-The two move together, so they are drawn into one file. Two separate images
-each run on a clock of their own and nothing can keep those in step; inside
-one file there is only one clock. The README shows two views of the file,
-#banner and #terminal, with its real heading between them.
-
 The story, which begins when the terminal has typed its last command:
 
   idea      the spark comes down and rests on the slab
@@ -17,11 +12,20 @@ The story, which begins when the terminal has typed its last command:
 
 When the rocket has landed the bar clears and the loop starts again.
 
-Writes assets/hero-wide.svg and assets/hero-narrow.svg: the same picture
-twice, with the terminal wrapped for phones in the second. The banner
-follows the reader's light or dark theme by itself. The angle lives in
-view.py and the colours in palette.py. No dependencies: the terminal's text
-is set in whatever monospace font the reader's system has.
+Writes four pictures into assets/:
+
+  banner-dark.svg, banner-light.svg       the README picks one by the reader's theme
+  terminal-wide.svg, terminal-narrow.svg  ... and one by the width of the page
+
+The banner and the terminal are separate files, so each runs on its own
+clock. They stay in step because the README loads them together and both
+follow the one story timed here; every terminal layout enters its last
+command at the same moment, so one banner serves them all. Do not merge them
+into one file shown as two views (hero.svg#banner, hero.svg#terminal) to
+share a clock: Safari gives such an <img> the shape of the whole file.
+
+The angle lives in view.py and the colours in palette.py. No dependencies:
+the terminal's text is set in whatever monospace font the reader's system has.
 """
 from html import escape
 from pathlib import Path
@@ -85,8 +89,6 @@ CLIMB = 1.9  # lift-off to out of the picture
 AWAY = 1.4  # out of sight
 DESCENT = 2.2  # back in at the top, down to the pad
 LEAD = 0.2  # the first loop starts this long before the last key of the last command
-
-GAP = 40.0  # between the two views inside the file; never seen
 
 
 def n(v):
@@ -154,18 +156,15 @@ def pc(seconds):
     return n(100 * seconds / LOOP)
 
 
-def theme_css():
-    """The banner's colours as variables: dark by default, light when the reader's theme is."""
-
-    def values(t):
-        return (
-            f"--floor:{t['floor']};--seam:{t['seam']};--e1:{darker(t['floor'], 0.5)};--e2:{darker(t['floor'], 1)};"
-            f"--n:{t['block']};--n1:{darker(t['block'], 0.5)};--n2:{darker(t['block'], 1)};"
-            f"--s:{t['spark']};--s1:{darker(t['spark'], 0.5)};--s2:{darker(t['spark'], 1)};"
-            f"--h:{t['rocket']};--h1:{darker(t['rocket'], 0.5)};--h2:{darker(t['rocket'], 1)};--glow:{t['glow']}"
-        )
-
-    return f":root{{{values(THEMES['dark'])}}}@media (prefers-color-scheme:light){{:root{{{values(THEMES['light'])}}}}}"
+def theme_css(name):
+    """One theme's colours for the banner, as variables."""
+    t = THEMES[name]
+    return (
+        f":root{{--floor:{t['floor']};--seam:{t['seam']};--e1:{darker(t['floor'], 0.5)};--e2:{darker(t['floor'], 1)};"
+        f"--n:{t['block']};--n1:{darker(t['block'], 0.5)};--n2:{darker(t['block'], 1)};"
+        f"--s:{t['spark']};--s1:{darker(t['spark'], 0.5)};--s2:{darker(t['spark'], 1)};"
+        f"--h:{t['rocket']};--h1:{darker(t['rocket'], 0.5)};--h2:{darker(t['rocket'], 1)};--glow:{t['glow']}}}"
+    )
 
 
 def banner(sc, start):
@@ -271,24 +270,36 @@ def banner(sc, start):
     return markup, css, w, h
 
 
-def typing(layout):
-    """The terminal's rows with the time each appears, and when the last key of the last command falls."""
+def typing(layout, enter=None):
+    """The terminal's rows with the time each appears, and when the last key of the last command falls.
+
+    Given `enter`, the pauses between commands stretch or shrink so that the last key falls then.
+    """
     rows = [("type", COMMANDS["about"])]
     rows += [("print", " ".join(part)) for part in chunks(ABOUT, layout["about"])]
     rows += [("gap",), ("type", COMMANDS["built"])]
     rows += [("list", row) for row in chunks(BUILT, layout["built"])]
     rows += [("gap",), ("type", COMMANDS["next"]), ("bar",)]
-    clock, timed, enter = 0.5, [], 0.0
-    for row in rows:
-        timed.append((row, clock))
-        if row[0] == "type":
-            enter = clock + 0.25 + len(row[1]) * KEY
-            clock = enter + 0.3
-        elif row[0] in ("print", "list"):
-            clock += 0.16
-        elif row[0] == "gap":
-            clock += PAUSE
-    return timed, enter
+
+    def run(pause):
+        clock, timed, last = 0.5, [], 0.0
+        for row in rows:
+            timed.append((row, clock))
+            if row[0] == "type":
+                last = clock + 0.25 + len(row[1]) * KEY
+                clock = last + 0.3
+            elif row[0] in ("print", "list"):
+                clock += 0.16
+            elif row[0] == "gap":
+                clock += pause
+        return timed, last
+
+    timed, last = run(PAUSE)
+    if enter is not None:
+        pause = PAUSE + (enter - last) / sum(row[0] == "gap" for row in rows)
+        assert pause > 0.3, "this layout cannot type its commands in the time the story gives it"
+        timed, last = run(pause)
+    return timed, last
 
 
 def terminal(layout, timed, sc, start):
@@ -382,38 +393,39 @@ def terminal(layout, timed, sc, start):
     return markup, css, w, h
 
 
-def draw(name):
-    layout = LAYOUTS[name]
-    sc = scene()
-    timed, enter = typing(layout)
-    start = enter - LEAD  # the spark starts down as the command is entered
-
-    b_markup, b_css, bw, bh = banner(sc, start)
-    t_markup, t_css, tw, th = terminal(layout, timed, sc, start)
-    w = max(bw, tw)
-    bx, tx, ty = (w - bw) / 2, (w - tw) / 2, bh + GAP
-    css = theme_css() + b_css + t_css + "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
+def picture(markup, css, w, h, label):
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
-        f'viewBox="0 0 {n(w)} {n(ty + th)}" role="img" aria-label="jnvhr">'
-        f"<title>jnvhr</title>"
-        # the README shows these two views, never the whole file
-        f'<view id="banner" viewBox="{n(bx)} 0 {n(bw)} {n(bh)}"/>'
-        f'<view id="terminal" viewBox="{n(tx)} {n(ty)} {n(tw)} {n(th)}"/>'
-        f"<style>{css}</style>"
-        f'<g transform="translate({n(bx)} 0)">{b_markup}</g>'
-        f'<g transform="translate({n(tx)} {n(ty)})" xml:space="preserve">{t_markup}</g>'
-        "</svg>\n"
+        f'viewBox="0 0 {n(w)} {n(h)}" role="img" aria-label="{label}">'
+        f"<title>{label}</title>"
+        f"<style>{css}@media (prefers-reduced-motion:reduce){{*{{animation:none!important}}}}</style>"
+        f"{markup}</svg>\n"
     )
+
+
+def draw():
+    """Every picture, by file name."""
+    sc = scene()
+    enter = typing(LAYOUTS["wide"])[1]
+    start = enter - LEAD  # the spark starts down as the command is entered
+
+    files = {}
+    markup, css, w, h = banner(sc, start)
+    for theme in THEMES:
+        files[f"banner-{theme}.svg"] = picture(markup, theme_css(theme) + css, w, h, "jnvhr")
+    for name, layout in LAYOUTS.items():
+        timed, _ = typing(layout, enter)  # the one banner needs every layout to enter its last command together
+        markup, css, w, h = terminal(layout, timed, sc, start)
+        files[f"terminal-{name}.svg"] = picture(f'<g xml:space="preserve">{markup}</g>', css, w, h, "terminal")
+    return files
 
 
 def main():
     out = Path(__file__).resolve().parent.parent / "assets"
     out.mkdir(exist_ok=True)
-    for name in LAYOUTS:
-        data = draw(name)
-        (out / f"hero-{name}.svg").write_text(data, encoding="utf-8")
-        print(f"hero-{name}.svg  {len(data) / 1024:.1f} KB")
+    for name, data in draw().items():
+        (out / name).write_text(data, encoding="utf-8")
+        print(f"{name}  {len(data) / 1024:.1f} KB")
 
 
 if __name__ == "__main__":
