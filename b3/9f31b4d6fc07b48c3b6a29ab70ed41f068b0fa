@@ -1,0 +1,21 @@
+.github/workflows/profile-graphics.yml
+  s_0913df956d9d77::t_9b702b61287923 3-5,40
+README.md
+  s_0913df956d9d77::t_944afd9f4494a2 67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "b39f31b4d6fc07b48c3b6a29ab70ed41f068b0fa",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "unknown"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
