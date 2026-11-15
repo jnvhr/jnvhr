@@ -5,7 +5,7 @@ name: Profile graphics
 #   profile-3d-contrib/profile-*.svg  3D contribution graph, drawn by
 #                                     yoshi389111/github-profile-3d-contrib, then turned
 #   assets/name-*.svg                 the name banner
-#   assets/intro.svg                  the terminal card under it
+#   assets/intro-*.svg                the terminal under it, full width and for phones
 
 on:
   schedule:
@@ -50,7 +50,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A profile-3d-contrib assets/name-dark.svg assets/name-light.svg assets/intro.svg
+          git add -A profile-3d-contrib assets/name-dark.svg assets/name-light.svg assets/intro-wide.svg assets/intro-narrow.svg
           if ! git diff --cached --quiet; then
             git commit -m "Update profile graphics"
             git pull --rebase
