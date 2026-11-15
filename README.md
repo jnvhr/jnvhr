@@ -29,6 +29,22 @@
   </p>
 </div>
 
+## Contributions in 3D
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="profile-3d-contrib/profile-night-rainbow.svg">
+  <img src="profile-3d-contrib/profile-season-animate.svg" width="100%" alt="3D graph of a year of contributions">
+</picture>
+
+### Commits, last six months
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="metrics/commit-calendar-dark.svg">
+    <img src="metrics/commit-calendar-light.svg" width="72%" alt="Isometric calendar of the last six months of commits">
+  </picture>
+</p>
+
 ## Everything I've built
 
 | Project | What it is | Where |
@@ -54,20 +70,6 @@
 | | [Reddit: read search and subreddits from server-rendered HTML when `.json` is blocked](https://github.com/jackwener/OpenCLI/pull/2798) | <img src="https://img.shields.io/github/pulls/detail/state/jackwener/OpenCLI/2798?label=&style=flat-square" alt="pull request 2798 status"> |
 
 [All my public pull requests](https://github.com/search?q=author%3Ajnvhr+is%3Apr+is%3Apublic&type=pullrequests)
-
-## Contributions in 3D
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="profile-3d-contrib/profile-night-rainbow.svg">
-  <img src="profile-3d-contrib/profile-season-animate.svg" width="100%" alt="3D graph of a year of contributions">
-</picture>
-
-## Commit calendar
-
-<p align="center">
-  <picture><img src="metrics/commit-calendar.svg" width="49%" align="top" alt="Isometric calendar of a year of commits"></picture>
-  <picture><img src="metrics/activity.svg" width="49%" align="top" alt="Recent activity and notable contributions"></picture>
-</p>
 
 <picture><img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="100%" alt=""></picture>
 
