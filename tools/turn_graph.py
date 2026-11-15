@@ -6,7 +6,8 @@
 github-profile-3d-contrib always draws a true isometric view: the scene
 turned 45 degrees. This rewrites where each day sits and how its three
 faces are sheared, so the graph is seen from the same angle as the name
-banner. The radar, the language ring and the totals are not touched.
+banner. The turned calendar is flatter, so the page is cropped to fit and
+the radar, the language ring and the totals move closer to it.
 
 A file that does not look the way version 0.9.3 writes it is left as it
 is, so a surprise in the input costs the new angle, never the image.
@@ -27,7 +28,9 @@ CELL = 20.0  # one day, tile plus seam; the tile itself is 18
 
 # how it is laid out after the turn
 SIZE = 22.2  # true edge of one day, sized so 53 weeks still fit the page
-FAR_CORNER = (142.0, 268.0)  # where the first day lands
+FAR_CORNER = (142.0, 262.0)  # where the first day lands
+RADAR_UP = 45.0  # the radar moves up, clear of the towers under it
+CROP = 140.0  # the page loses this much height; ring and totals move up by it
 
 DAY = re.compile(r'<g transform="translate\(([-\d.]+) ([-\d.]+)\)">(.*?)</g>', re.S)
 FACE = {
@@ -38,6 +41,17 @@ FACE = {
 HEIGHT = re.compile(r'height="([\d.]+)"[^>]*class="cont-left-')
 GROW = re.compile(r'(<animateTransform[^>]*values=")[^"]*(")')
 GROW_FROM = re.compile(r'attributeName="height" values="([\d.]+);')
+
+# everything else on the page that has to move: (pattern, how many, new text)
+MOVES = [
+    (r'width="1280" height="850" viewBox="0 0 1280 850"', 1,
+     lambda m: f'width="1280" height="{n(850 - CROP)}" viewBox="0 0 1280 {n(850 - CROP)}"'),
+    (r'(<rect x="0" y="0" width="1280" height=")850(" class="fill-bg">)', 1, lambda m: f"{m[1]}{n(850 - CROP)}{m[2]}"),
+    (r'(<g transform="translate\(980, )284\.5(\)">)', 1, lambda m: f"{m[1]}{n(284.5 - RADAR_UP)}{m[2]}"),
+    (r'(<g transform="translate\(40, )520(\)">)', 1, lambda m: f"{m[1]}{n(520 - CROP)}{m[2]}"),
+    (r'(<text [^>]*? y=")830(")', 4, lambda m: f"{m[1]}{n(830 - CROP)}{m[2]}"),
+    (r'(<g transform="translate\([\d.]+, )802(\), scale\(2\)">)', 2, lambda m: f"{m[1]}{n(802 - CROP)}{m[2]}"),
+]
 
 
 def n(v):
@@ -87,7 +101,13 @@ def turn(svg):
             )
         out += [svg[at : m.start()], f'<g transform="translate({n(gx)} {n(gy - h * rise)})">{inner}</g>']
         at = m.end()
-    return "".join(out) + svg[at:]
+    svg = "".join(out) + svg[at:]
+
+    if any(len(re.findall(pattern, svg)) != count for pattern, count, _ in MOVES):
+        return None
+    for pattern, _, new in MOVES:
+        svg = re.sub(pattern, new, svg)
+    return svg
 
 
 def main():
