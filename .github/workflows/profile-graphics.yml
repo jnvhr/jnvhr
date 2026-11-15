@@ -35,8 +35,9 @@ jobs:
           # GitHub's own greens on a dark slab (and a light twin), instead of the stock themes
           SETTING_JSON: .github/profile-3d-contrib.json
 
-      # the generator only draws a 45 degree view; this turns it to ours
-      - name: Turn the graph to the shared camera angle
+      # the generator only draws a 45 degree view from afar; this turns it to our
+      # angle, brings the camera closer and moves the charts below the calendar
+      - name: Re-stage the graph
         run: python3 tools/turn_graph.py profile-3d-contrib/*.svg
 
       - name: Name banner
