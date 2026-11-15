@@ -1,0 +1,27 @@
+assets/banner-light.svg
+  s_0913df956d9d77::t_27f77063a0fe6c 1
+.github/workflows/profile-graphics.yml
+  s_0913df956d9d77::t_27f77063a0fe6c 7,56
+README.md
+  s_0913df956d9d77::t_27f77063a0fe6c 3-4
+tools/draw_name.py
+  s_0913df956d9d77::t_27f77063a0fe6c 8-10,15,50-53,55,112,117-120,123-132,182,185-188,191,194,196-198,232-233
+assets/banner-dark.svg
+  s_0913df956d9d77::t_27f77063a0fe6c 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0154766a9ad7480c6631e419915ff830b7c809d7",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
