@@ -1,0 +1,25 @@
+.github/workflows/profile-graphics.yml
+  s_0913df956d9d77::t_0bdf454f9ac1a8 38-39
+profile-3d-contrib/profile-dark.svg
+  s_0913df956d9d77::t_1ae1396dece6bb 1,29
+profile-3d-contrib/profile-light.svg
+  s_0913df956d9d77::t_c1494dc243d4c3 1,29
+tools/turn_graph.py
+  s_0913df956d9d77::t_725d8566c66632 2,6-7,9-12,14-17,30,34-55,66,77-78,81-117,121,123,127,140-153,155-157,160-163,170,172,176-179
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e4e01120be6258c0e1a1fac3ececcac98dd4c077",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "unknown"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
