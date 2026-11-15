@@ -5,6 +5,7 @@ name: Profile graphics
 #   profile-3d-contrib/profile-*.svg  3D contribution graph, drawn by
 #                                     yoshi389111/github-profile-3d-contrib, then turned
 #   assets/name-*.svg                 the name banner
+#   assets/intro.svg                  the terminal card under it
 
 on:
   schedule:
@@ -40,14 +41,16 @@ jobs:
       - name: Re-stage the graph
         run: python3 tools/turn_graph.py profile-3d-contrib/*.svg
 
-      - name: Name banner
-        run: python3 tools/draw_name.py
+      - name: Name banner and intro card
+        run: |
+          python3 tools/draw_name.py
+          python3 tools/draw_intro.py
 
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A profile-3d-contrib assets/name-dark.svg assets/name-light.svg
+          git add -A profile-3d-contrib assets/name-dark.svg assets/name-light.svg assets/intro.svg
           if ! git diff --cached --quiet; then
             git commit -m "Update profile graphics"
             git pull --rebase

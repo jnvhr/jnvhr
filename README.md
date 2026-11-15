@@ -6,9 +6,7 @@
 
   <h1>Hi, I'm jnvhr <picture><img src="https://user-images.githubusercontent.com/74038190/214644152-52f47eb3-5e31-4f47-8758-05c9468d5596.gif" width="34" alt="waving hand"></picture></h1>
 
-  <h3>Most ideas die in a notes app. Mine get built.</h3>
-
-  <p>So far: browser tools, a native Mac app, encrypted team chat,<br>and a music video rendered from Python.</p>
+  <picture><img src="assets/intro.svg" width="430" alt="A terminal. cat about.txt prints: I don't keep a list of ideas. I keep a list of things I built. ls built lists browser tools, a native Mac app, encrypted chat and a music video in Python. Then it runs: idea --next | build | ship."></picture>
 
   <p>
     <a href="https://x.com/DevMingAI"><img src="https://img.shields.io/badge/X-21262d?style=for-the-badge&logo=x&logoColor=39d353" alt="X"></a>
