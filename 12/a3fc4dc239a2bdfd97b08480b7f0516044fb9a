@@ -1,0 +1,24 @@
+tools/turn_graph.py
+  s_0913df956d9d77::t_26cd6016a207a2 9-10,31-33,45-51,53-55,104-110
+  s_0913df956d9d77::t_1daddd999cee17 52
+profile-3d-contrib/profile-dark.svg
+  s_0913df956d9d77::t_ae5dcbccde0ebc 1,29
+profile-3d-contrib/profile-light.svg
+  s_0913df956d9d77::t_10aee6039c18d1 1,29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "12a3fc4dc239a2bdfd97b08480b7f0516044fb9a",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
