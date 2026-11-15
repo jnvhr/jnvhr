@@ -1,0 +1,21 @@
+.github/workflows/profile-graphics.yml
+  s_0913df956d9d77::t_e8f4ca0a2e2d21 4-5,34-35,41,44,47,53-56,58-66
+README.md
+  s_0913df956d9d77::t_21acc50c6bfbf6 32-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f3364bd829328940a4b15f17fe62ddc3a87f618d",
+  "prompts": {},
+  "sessions": {
+    "s_0913df956d9d77": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "289881eb-f38c-4009-8d3c-9d5b3d7c33ec",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
