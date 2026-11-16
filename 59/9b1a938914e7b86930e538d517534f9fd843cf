@@ -1,0 +1,19 @@
+README.md
+  s_7adcf9abbe10c3::t_49807a73a0f6ed 38
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "599b1a938914e7b86930e538d517534f9fd843cf",
+  "prompts": {},
+  "sessions": {
+    "s_7adcf9abbe10c3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e0e6dae4-7162-4972-b8a9-dd4a67c68296",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
