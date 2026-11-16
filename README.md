@@ -35,7 +35,7 @@
   </p>
 </div>
 
-## Contributions in 3D
+## Contributions
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="profile-3d-contrib/profile-dark.svg">
