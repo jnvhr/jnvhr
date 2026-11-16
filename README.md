@@ -38,8 +38,8 @@
 ## Contributions
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="profile-3d-contrib/profile-dark.svg">
-  <img src="profile-3d-contrib/profile-light.svg" width="100%" alt="3D graph of a year of contributions">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/jnvhr/jnvhr/raw/output/profile-3d-contrib/profile-dark.svg">
+  <img src="https://github.com/jnvhr/jnvhr/raw/output/profile-3d-contrib/profile-light.svg" width="100%" alt="3D graph of a year of contributions">
 </picture>
 
 ## Everything I've built

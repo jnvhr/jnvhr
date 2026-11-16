@@ -6,6 +6,10 @@ name: Profile graphics
 #                                     yoshi389111/github-profile-3d-contrib, then turned
 #   assets/banner-*.svg               the name banner, one for each theme
 #   assets/terminal-*.svg             the terminal under it, by width (-narrow is for phones) and theme
+#
+# The graph changes every day, so it lives on the output branch, replaced by a
+# single commit each run; master only holds what people write. The banner and
+# the terminal only change when tools/ does, and are committed with it.
 
 on:
   schedule:
@@ -47,13 +51,16 @@ jobs:
       - name: Name banner and terminal
         run: python3 tools/draw_hero.py
 
-      - name: Commit
+      # fails if tools/ changed without its pictures being redrawn and committed
+      - name: Banner and terminal are up to date
+        run: git diff --exit-code --stat -- assets .github/profile-3d-contrib.json
+
+      - name: Publish the graph
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A profile-3d-contrib .github/profile-3d-contrib.json assets/banner-*.svg assets/terminal-*.svg
-          if ! git diff --cached --quiet; then
-            git commit -m "Update profile graphics"
-            git pull --rebase
-            git push
-          fi
+          git checkout -q --orphan output
+          git reset -q
+          git add -f profile-3d-contrib
+          git commit -q -m "Profile graph"
+          git push -q -f origin output
