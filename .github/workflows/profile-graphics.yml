@@ -5,7 +5,7 @@ name: Profile graphics
 #   profile-3d-contrib/profile-*.svg  3D contribution graph, drawn by
 #                                     yoshi389111/github-profile-3d-contrib, then turned
 #   assets/banner-*.svg               the name banner, one for each theme
-#   assets/terminal-*.svg             the terminal under it; -narrow is for phones
+#   assets/terminal-*.svg             the terminal under it, by width (-narrow is for phones) and theme
 
 on:
   schedule:

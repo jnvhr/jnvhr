@@ -14,8 +14,9 @@ When the rocket has landed the bar clears and the loop starts again.
 
 Writes four pictures into assets/:
 
-  banner-dark.svg, banner-light.svg       the README picks one by the reader's theme
-  terminal-wide.svg, terminal-narrow.svg  ... and one by the width of the page
+  banner-dark.svg, banner-light.svg   the README picks one by the reader's theme
+  terminal-{wide,narrow}-{dark,light}.svg
+                                      ... and one of these by theme and by the width of the page
 
 The banner and the terminal are separate files, so each runs on its own
 clock. They stay in step because the README loads them together and both
@@ -30,7 +31,7 @@ the terminal's text is set in whatever monospace font the reader's system has.
 from html import escape
 from pathlib import Path
 
-from palette import TERMINAL, THEMES, darker
+from palette import TERMINALS, THEMES, darker
 from view import COS_PITCH, ground
 
 # ------------------------------------------------------------------ the banner
@@ -302,9 +303,9 @@ def typing(layout, enter=None):
     return timed, last
 
 
-def terminal(layout, timed, sc, start):
+def terminal(layout, timed, sc, start, theme):
     """The terminal window: (markup, css, width, height). Its bar follows the banner's story."""
-    ink, font = TERMINAL, layout["font"]
+    ink, font = TERMINALS[theme], layout["font"]
     advance, line = font * 0.6, round(font * 1.6)
     pad_x, pad_top, pad_bottom, title_bar = font * 1.45, font * 1.7, font * 1.35, font * 2.2
     column = max(len(b) for b in BUILT) + GUTTER
@@ -347,7 +348,7 @@ def terminal(layout, timed, sc, start):
             bw, bh, by = cells * advance, font * 0.83, y - font * 0.75
             seams = "".join(f"M{n(pad_x + j * advance)} {n(by - 1)}v{n(bh + 2)}" for j in range(1, cells))
             label_x = pad_x + (cells + 2) * advance
-            colours = (ink["listed"], ink["printed"], ink["bar"])
+            colours = (ink["listed"], ink["printed"], ink["done"])
             labels = "".join(
                 f'<text class="st{j}" x="{n(label_x)}" y="{n(y)}" fill="{c}"'
                 + ("" if j == 1 else ' fill-opacity="0"')  # without motion, the bar is caught mid-build
@@ -415,8 +416,9 @@ def draw():
         files[f"banner-{theme}.svg"] = picture(markup, theme_css(theme) + css, w, h, "jnvhr")
     for name, layout in LAYOUTS.items():
         timed, _ = typing(layout, enter)  # the one banner needs every layout to enter its last command together
-        markup, css, w, h = terminal(layout, timed, sc, start)
-        files[f"terminal-{name}.svg"] = picture(f'<g xml:space="preserve">{markup}</g>', css, w, h, "terminal")
+        for theme in TERMINALS:
+            markup, css, w, h = terminal(layout, timed, sc, start, theme)
+            files[f"terminal-{name}-{theme}.svg"] = picture(f'<g xml:space="preserve">{markup}</g>', css, w, h, "terminal")
     return files
 
 

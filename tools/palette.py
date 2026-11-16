@@ -75,17 +75,34 @@ LIGHT = {
 THEMES = {"dark": DARK, "light": LIGHT}
 
 # the terminal is the same dark window in both themes
-TERMINAL = {
-    "card": BG,
-    "edge": GRID2,
-    "title": DIM,
-    "prompt": GOLD,
-    "typed": INK,
-    "printed": mix(INK, DIM, 0.28),
-    "listed": GOLD_LIGHT,
-    "bar": GOLD,
-    "track": GRID,
-    "lights": (GOLD_DARK, GOLD, GOLD_LIGHT),
+# the terminal window, one for each theme. done colours the word "shipped"
+TERMINALS = {
+    "dark": {
+        "card": BG,
+        "edge": GRID2,
+        "title": DIM,
+        "prompt": GOLD,
+        "typed": INK,
+        "printed": mix(INK, DIM, 0.28),
+        "listed": GOLD_LIGHT,
+        "bar": GOLD,
+        "done": GOLD,
+        "track": GRID,
+        "lights": (GOLD_DARK, GOLD, GOLD_LIGHT),
+    },
+    "light": {
+        "card": PAPER,
+        "edge": PAPER_GRID,
+        "title": DIM,
+        "prompt": GOLD_MID,
+        "typed": BG,
+        "printed": mix(BG, DIM, 0.45),
+        "listed": GOLD_DARK,
+        "bar": GOLD,
+        "done": GOLD_DARK,
+        "track": PAPER_GRID,
+        "lights": (GOLD_DARK, GOLD_MID, GOLD),
+    },
 }
 
 

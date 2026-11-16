@@ -8,8 +8,10 @@
 
   <p>
     <picture>
-      <source media="(max-width: 640px)" srcset="assets/terminal-narrow.svg">
-      <img src="assets/terminal-wide.svg" width="100%" alt="A terminal. cat about.txt prints: I don't keep a list of ideas. I keep a list of things I built. ls built lists browser tools, a native Mac app, encrypted chat and a music video in Python. Then it runs: idea --next | build | ship, and a progress bar follows the banner above: idea, building, shipped.">
+      <source media="(prefers-color-scheme: light) and (min-width: 641px)" srcset="assets/terminal-wide-light.svg">
+      <source media="(prefers-color-scheme: light)" srcset="assets/terminal-narrow-light.svg">
+      <source media="(max-width: 640px)" srcset="assets/terminal-narrow-dark.svg">
+      <img src="assets/terminal-wide-dark.svg" width="100%" alt="A terminal. cat about.txt prints: I don't keep a list of ideas. I keep a list of things I built. ls built lists browser tools, a native Mac app, encrypted chat and a music video in Python. Then it runs: idea --next | build | ship, and a progress bar follows the banner above: idea, building, shipped.">
     </picture>
   </p>
 
