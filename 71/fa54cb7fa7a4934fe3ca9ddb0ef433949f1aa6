@@ -1,0 +1,33 @@
+assets/terminal-narrow-dark.svg
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 1
+assets/terminal-wide-dark.svg
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 1
+assets/terminal-wide-light.svg
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 1
+README.md
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 11-14
+assets/terminal-narrow-light.svg
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 1
+tools/palette.py
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 78-105
+tools/draw_hero.py
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 17-19,34,306,308,351,419-421
+.github/workflows/profile-graphics.yml
+  s_7adcf9abbe10c3::t_4fe4cbf1d4aaac 8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "71fa54cb7fa7a4934fe3ca9ddb0ef433949f1aa6",
+  "prompts": {},
+  "sessions": {
+    "s_7adcf9abbe10c3": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "e0e6dae4-7162-4972-b8a9-dd4a67c68296",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Jnvhr <jnvhr@users.noreply.github.com>"
+    }
+  }
+}
